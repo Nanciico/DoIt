@@ -3,9 +3,9 @@
 // 覆盖变量
 // ==============================
 
-$global-font-family: Monaco, MaShanZheng-Regular, Microsoft YaHei UI;
+$global-font-family: Monaco, MaShanZheng-Regular, Consolas, Microsoft YaHei UI;
 $global-font-size: 16px;
 $global-line-height: 2rem;
 $global-font-weight: 400;
 
-$code-font-family: Monaco, Consolas, $global-font-family !default;
+$code-font-family: Monaco, Consolas, MaShanZheng-Regular, Microsoft YaHei UI, $global-font-family !default;
