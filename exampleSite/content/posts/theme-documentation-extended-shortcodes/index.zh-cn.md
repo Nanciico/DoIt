@@ -39,7 +39,7 @@ Hugo **extended** 版本对于 `style` shortcode 是必需的.
 
 `style` shortcode 有两个位置参数.
 
-第一个参数是自定义样式的内容. 它支持 [:(fab fa-sass fa-fw): SASS](https://sass-lang.com/documentation/style-rules/declarations#nesting) 中的嵌套语法,
+第一个参数是自定义样式的内容. 它支持 [{{< fa-icon brands sass >}} SASS](https://sass-lang.com/documentation/style-rules/declarations#nesting) 中的嵌套语法,
 并且 `&` 指代这个父元素.
 
 第二个参数是包裹你要更改样式的内容的 HTML 标签, 默认值是 `div`.
@@ -1253,6 +1253,43 @@ https://www.bilibili.com/video/BV1TJ411C7An?p=3
 
 {{< bilibili id=BV1TJ411C7An p=3 >}}
 
+### 高级用法
+
+`bilibili` shortcode 支持[此博客文章](https://zyc420.com/6143.html)中展示的所有命名参数。
+
+以下是所有命名参数的列表：
+
+| 参数名 | 参数位置 | 参数用途 | 使用方法 |
+|---|---|---|---|
+| id | 0 | 视频BVID，必须项 | BV1TJ411C7An |
+| p | 1 | 视频分P（默认为1） | 输入数字 |
+| autoplay | 2 | 是否自动播放（默认为否） | `1`或`true`：启用，`0`或`false`：关闭 |
+| danmaku | 3 | 默认弹幕开关（默认为开启） | `1`或`true`：启用，`0`或`false`：关闭 |
+| muted | 4 | 是否默认静音（默认为否） | `1`或`true`：启用，`0`或`false`：关闭 |
+| t | 5 | 默认开始时间（默认为0） | 直接输入数值，单位为秒 |
+
+以下选项目前似乎不起作用，但仍然被加进shortcode中，以希望未来这些选项能够被正常使用：
+
+| 参数名 | 参数位置 | 参数用途 | 使用方法 |
+|---|---|---|---|
+| hasMuteButton | 6 | 一键静音按钮是否显示（默认不显示） | `1`或`true`：启用，`0`或`false`：关闭 |
+| hideCoverInfo | 7 | 视频封面下方是否显示播放量弹幕量等信息（默认显示） | `1`或`true`：启用，`0`或`false`：关闭 |
+| hideDanmakuButton | 8 | 是否隐藏弹幕按钮（默认不隐藏） | `1`或`true`：启用，`0`或`false`：关闭 |
+| noFullScreenButton | 9 | 是否隐藏全屏按钮（默认显示） | `1`或`true`：启用，`0`或`false`：关闭 |
+| fjw | 10 | 是否启用记忆播放（默认开启） | `1`或`true`：启用，`0`或`false`：关闭 |
+
+一个带有所有命名参数的`bilibili`示例：
+
+```markdown
+{{</* bilibili BV1TJ411C7An 3 0 0 1 30 0 1 1 1 1 */>}}
+或者
+{{</* bilibili id=BV1TJ411C7An p=3 autoplay=0 danmaku=0 muted=1 t=30 hasMuteButton=0 hideCoverInfo=1 hideDanmakuButton=1 noFullScreenButton=1 fjw=1 */>}}
+```
+
+呈现的输出效果如下:
+
+{{< bilibili id=BV1TJ411C7An p=3 autoplay=0 danmaku=0 muted=1 t=30 hasMuteButton=0 hideCoverInfo=1 hideDanmakuButton=1 noFullScreenButton=1 fjw=1 >}}
+
 ## typeit
 
 `typeit` shortcode 基于 [TypeIt](https://typeitjs.com/) 提供了打字动画.
@@ -1352,7 +1389,7 @@ public class HelloWorld {
 
 {{< version 0.2.8 >}}
 
-`script` shortcode 用来在你的文章中插入 **:(fab fa-js fa-fw): Javascript** 脚本.
+`script` shortcode 用来在你的文章中插入 **{{< fa-icon brands js >}} Javascript** 脚本.
 
 {{< admonition >}}
 脚本内容可以保证在所有的第三方库加载之后按顺序执行.
@@ -1473,3 +1510,76 @@ $$\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}$$
 {{< math >}}
 $$\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}$$
 {{< /math >}}
+
+## tabs 和 tab
+
+`tabs` 和 `tab` 是两个 shortcodes, 当一起使用时, 可以为你的内容创建一个选项卡组件。
+
+一个 `tabs` 和 `tab` 示例:
+
+````markdown
+{{</* tabs */>}}
+
+{{%/* tab title="选项卡 1" */%}}
+
+### 标题 1
+
+你好👋
+
+#### 标题 2
+
+```py
+print("Hello world!")
+```
+
+{{%/* /tab */%}}
+
+{{%/* tab title="选项卡 2" */%}}
+
+另一个选项卡
+
+{{%/* /tab */%}}
+
+{{</* /tabs */>}}
+````
+呈现的输出效果如下：
+
+{{< tabs >}}
+
+{{% tab title="选项卡 1" %}}
+
+### 标题 1
+
+你好👋
+
+#### 标题 2
+
+```py
+print("Hello world!")
+```
+
+{{% /tab %}}
+
+{{% tab title="选项卡 2" %}}
+
+另一个选项卡
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+由于 Hugo shortcode 系统的限制，嵌套的选项卡可能无法正常工作。
+
+## fa-icon
+
+`fa-icon` shortcode 用于插入 [{{< fa-icon brands font-awesome >}}**Font Awesome 5**](https://fontawesome.com/v5/search?m=free) 图标。
+
+一个 `fa-icon` 示例:
+
+```markdown
+{{</* fa-icon regular smile */>}}
+```
+
+呈现的输出效果如下:
+
+{{< fa-icon regular smile >}}
