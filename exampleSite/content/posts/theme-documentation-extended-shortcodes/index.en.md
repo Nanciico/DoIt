@@ -155,14 +155,6 @@ The `image` shortcode has the following named parameters:
 
     `class` attribute of the HTML `figure` tag.
 
-* **src_s** *[optional]*
-
-    URL of the image thumbnail, used for lightgallery, the default value is the value of the **src** parameter.
-
-* **src_l** *[optional]*
-
-    URL of the HD image, used for lightgallery, the default value is the value of the **src** parameter.
-
 * **height** *[optional]*
 
     `height` attribute of the image.
@@ -178,6 +170,14 @@ The `image` shortcode has the following named parameters:
 * **rel** *[optional]*
 
     Additional `rel` attributes of the HTML `a` tag, if **linked** parameter is set to `true`.
+
+* **optimise** *[optional]*
+
+    Whether to optimise the image, override the site configuration.
+
+* **cacheRemote** *[optional]*
+
+    Whether to cache the remote image, override the site configuration.
 
 Example `image` input:
 
@@ -1483,30 +1483,6 @@ The rendered output looks like this:
 
 {{< showcase title="Theme Documentation - Basics" summary="Discover what the Hugo - DoIt theme is all about and the core-concepts behind it." image="/theme-documentation-basics/featured-image.webp" link="/theme-documentation-basics" >}}
 
-## math
-
-{{< version 0.2.12 >}}
-
-`math` is a shortcode to insert a math expression in your post. This can prevent [Goldmark](https://gohugo.io/getting-started/configuration-markup/#goldmark) from parsing math expressions into HTML. You no longer need to escape special characters inside this shortcode.
-
-Example `math` input:
-
-```markdown
-{{</* math */>}}$\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}${{</* /math */>}}
-Or
-{{</* math */>}}
-$$\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}$$
-{{</* /math */>}}
-```
-
-The rendered output looks like this:
-
-{{< math >}}$\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}${{< /math >}}
-
-{{< math >}}
-$$\|\boldsymbol{x}\|_{0}=\sqrt[0]{\sum_{i} x_{i}^{0}}$$
-{{< /math >}}
-
 ## tabs and tab
 
 `tabs` and `tab` are two shortcodes, when used together, can create a tab component for your content.
@@ -1580,3 +1556,45 @@ A `fa-icon` example:
 The rendered output looks like this:
 
 {{< fa-icon regular smile >}}
+
+## person
+
+`person` is a shortcode to insert a link to a personal webpage marked up as [h-card](http://microformats.org/wiki/h-card).
+
+The `person` shortcode has the following named parameters:
+
+* **url** *[required]* (**first** positional parameter)
+
+    URL of the personal page.
+
+* **name** *[required]* (**second** positional parameter)
+
+    Name of the person.
+
+* **text** *[optional]* (**third** positional parameter)
+
+    Text to display as hover tooltip of the link.
+
+* **picture** *[optional]* (**fourth** positional parameter)
+
+    A picture to use as person's avatar.
+
+* **nick** *[optional]*
+
+    Nickame of the person.
+
+Example `person` input:
+
+```markdown
+{{</* person url="https://evgenykuznetsov.org" name="Evgeny Kuznetsov" nick="nekr0z" text="author of this shortcode" picture="https://evgenykuznetsov.org/img/avatar.jpg" */>}}
+```
+
+This renders as {{< person url="https://evgenykuznetsov.org" name="Evgeny Kuznetsov" nick="nekr0z" text="author of this shortcode" picture="https://evgenykuznetsov.org/img/avatar.jpg" >}}.
+
+Without an explicitly given picture, a generic icon is used. This input:
+
+```markdown
+{{</* person "https://dillonzq.com/" Dillon "author of the LoveIt theme" */>}}
+```
+
+This renders as {{< person "https://dillonzq.com/" Dillon "author of the LoveIt theme" >}}.

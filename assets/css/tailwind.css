@@ -18,7 +18,14 @@
   ul {
     @apply tw-list-disc tw-list-outside;
   }
-  
+  .tw-scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .tw-align-image {
+    vertical-align: -0.125em;
+  }
+
   :root {
     /* ========== Global ========== */
     /* Color of the background */
@@ -72,7 +79,7 @@
 
     /* ========== Pagination ========== */
     /* Color of the link in pagination */
-    --pagination-link-color: #2d809a; 
+    --pagination-link-color: #2d809a;
     /* Color of the hover link in pagination */
     --pagination-link-hover-color: #000;
     /* ========== Pagination ========== */
@@ -98,6 +105,7 @@
     --code-color: #e74c3c;
     /* Color of the code background */
     --code-background-color: #f5f5f5;
+    --inline-code-background-color: var(--bgColor-neutral-muted);
 
     --code-header-color: #ededed;
     --code-background-color-darken-5: #e8e8e8;
@@ -132,10 +140,11 @@
     --bgColor-secondary: #ededed;
     --bgColor-accent-emphasis: #6bd6fd;
     --bgColor-accent-muted: #388bfd1a;
+    --bgColor-neutral-muted: #afb8c133;
     --borderColor-default: #f0f0f0;
     --selection-bgColor: #35a6f740;
     --button-default-bgColor-rest: #f0f0f0;
-    --button-default-bgColor-hover: #f0f0f0;  
+    --button-default-bgColor-hover: #f0f0f0;
     /* ========== primitives ========== */
   }
   /* Theme dark */
@@ -151,9 +160,10 @@
     --bgColor-accent-emphasis: #1f6feb;
     --bgColor-accent-muted: #388bfd1a;
     --borderColor-default: #30363d;
+    --bgColor-neutral-muted: #6e768166;
     --selection-bgColor: #1f6febb3;
     --button-default-bgColor-rest: #21262d;
-    --button-default-bgColor-hover: #292e36;  
+    --button-default-bgColor-hover: #292e36;
     /* ========== primitives ========== */
 
     --global-background-color: var(--bgColor-default);
@@ -191,7 +201,9 @@
     --friend-link-hover-color: var(--fgColor-link-hover);
 
     --sponsor-button-background-color: var(--button-default-bgColor-rest);
-    --sponsor-button-hover-background-color: var(--button-default-bgColor-hover);
+    --sponsor-button-hover-background-color: var(
+      --button-default-bgColor-hover
+    );
 
     --cookie-background-color: white;
 
@@ -200,7 +212,9 @@
     --code-header-color: var(--bgColor-secondary);
     --code-background-color-darken-5: #1c2025; /* TODO */
     --code-background-color-darken-6: #1a1d23; /* TODO */
-    --code-background-color-code-header: var(--code-background-color-darken-6); /* TODO */
+    --code-background-color-code-header: var(
+      --code-background-color-darken-6
+    ); /* TODO */
     --code-background-color-code-hl: #1c2025; /* TODO */
     --code-info-color: #b1b0b0; /* TODO */
 
